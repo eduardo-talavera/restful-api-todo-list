@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const morgan = require('morgan');
 const db = require("./config/db");
 const todoRoutes = require("./routes/todoRoutes");
 
@@ -15,6 +16,7 @@ db.sync()
 // middlewares
 app.use(cors());
 app.use(express.json());
+app.use(morgan('dev'));
 
 // routes
 app.use("/api", todoRoutes);

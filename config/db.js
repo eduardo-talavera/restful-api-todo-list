@@ -16,7 +16,7 @@ module.exports = new Sequelize(
       idle: 10000,
     },
     define: {
-      timestamps: false,
+      timestamps: true,
     },
     logging: false,
   }

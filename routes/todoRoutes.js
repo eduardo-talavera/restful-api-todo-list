@@ -15,7 +15,7 @@ const {
 router.get('/todos', listTodos);
 
 // get a todo
-router.get('/todos/:id', getSingleTodo)
+router.get('/todos/:id', getSingleTodo);
 
 // create a todo
 router.post('/todos', createTodo);

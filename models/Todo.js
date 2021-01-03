@@ -20,13 +20,17 @@ const Todo = db.define(
       },
     },
     title: {
-      type: DataTypes.STRING(60),
+      type: DataTypes.STRING(150),
       allowNull: false,
       validate: {
         notEmpty: {
           msg: "the title can not be empty",
         }
       },
+      unique: {
+        args: true,
+        msg: 'the title already exists try another'
+     }
     },
     completed: {
       type: DataTypes.BOOLEAN,

@@ -1,22 +1,27 @@
 const Todo = require("../models/Todo");
+const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.createTodo = async (req, res) => {
   try {
     await Todo.create(req.body);
-    res.json({ msg: "todo created succesfully" });
+    res.json({ msg: "the todo has been created successfully" });
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };
 
 exports.listTodos = async (req, res) => {
   try {
-    const todos = await Todo.findAll();
+    const todos = await Todo.findAll({ order: [['createdAt', 'DESC']] });
     res.json(todos);
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };
 
@@ -27,7 +32,9 @@ exports.getSingleTodo = async (req, res) => {
     res.json(todo);
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };
 
@@ -51,7 +58,9 @@ exports.changeStateTodo = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };
 
@@ -61,7 +70,8 @@ exports.updateTodo = async (req, res) => {
   try {
     // update todo
     const todoUpdated = await Todo.update({ name, title, completed }, {
-      where: { id }
+      where: { id },
+      
     });
     res.json({
       msg: "The todo has been update successfully",
@@ -69,7 +79,9 @@ exports.updateTodo = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };
 
@@ -83,6 +95,8 @@ exports.removeTodo = async (req, res) => {
     res.json({msg: 'the todo has been deleted successfully'})
   } catch (error) {
     console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json({
+      error: errorHandler(error)
+    });
   }
 };

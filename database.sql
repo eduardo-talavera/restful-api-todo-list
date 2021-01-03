@@ -1,8 +1,0 @@
-CREATE DATABASE todo_db;
-
-CREATE TABLE todo(
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(100),
-  title VARCHAR(100),
-  completed BOOLEAN
-);
