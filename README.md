@@ -29,7 +29,6 @@ Example:
 ## create the database in postgre
 
 - run the following statement in a psql shell or you can also create one from an administrator like pgAdmin 4
-run
 
 ```sql
 
